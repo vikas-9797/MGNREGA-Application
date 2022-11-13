@@ -1,0 +1,93 @@
+
+mysql> use mgnrega;
+Database changed
+mysql> desc bdo;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| bid       | int         | NO   | PRI | NULL    |       |
+| bname     | varchar(12) | NO   |     | NULL    |       |
+| bemail    | varchar(15) | NO   | UNI | NULL    |       |
+| bpassword | varchar(15) | NO   |     | NULL    |       |
+| baddress  | varchar(15) | NO   |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> desc gpm;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| gid       | int         | NO   | PRI | NULL    |       |
+| gname     | varchar(12) | NO   |     | NULL    |       |
+| gemail    | varchar(15) | NO   | UNI | NULL    |       |
+| gpassword | varchar(15) | NO   |     | NULL    |       |
+| gmobile   | varchar(10) | NO   |     | NULL    |       |
+| gaddress  | varchar(15) | NO   |     | NULL    |       |
+| bdoid     | int         | YES  | MUL | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> desc project;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| pid        | int         | NO   | PRI | NULL    |       |
+| pname      | varchar(12) | NO   | UNI | NULL    |       |
+| pcost      | varchar(12) | NO   |     | NULL    |       |
+| pissuedate | date        | NO   |     | NULL    |       |
+| gpmid      | int         | YES  | MUL | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc employee;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| eid           | int         | NO   | PRI | NULL    |       |
+| ename         | varchar(12) | NO   |     | NULL    |       |
+| email         | varchar(15) | NO   | UNI | NULL    |       |
+| emobile       | varchar(10) | NO   |     | NULL    |       |
+| eaddress      | varchar(15) | NO   |     | NULL    |       |
+| eworkduration | int         | YES  |     | NULL    |       |
+| esalary       | varchar(15) | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> desc employee_project;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| pid   | int  | YES  | MUL | NULL    |       |
+| eid   | int  | YES  | MUL | NULL    |       |
++-------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc gpm_project;
+ERROR 1146 (42S02): Table 'mgnrega.gpm_project' doesn't exist
+mysql> desc project_gpm;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| pid   | int  | YES  | MUL | NULL    |       |
+| gid   | int  | YES  | MUL | NULL    |       |
++-------+------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> select * from bdo;
++-----+-------+-----------------+-----------+------------+
+| bid | bname | bemail          | bpassword | baddress   |
++-----+-------+-----------------+-----------+------------+
+|   1 | vikas | vikas@gmail.com | kgf       | pratapgarh |
++-----+-------+-----------------+-----------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from gpm;
++-----+--------+-------------+-----------+------------+----------+-------+
+| gid | gname  | gemail      | gpassword | gmobile    | gaddress | bdoid |
++-----+--------+-------------+-----------+------------+----------+-------+
+|   2 | satish | a@gmail.com | 1234      | 8888888888 | varansi  |     1 |
+|   3 | varun  | v@gmail.com | 2345      | 9898989898 | delhi    |     1 |
+|   7 | hina   | h@gmail.com | 678       | 9191919191 | puner    |     1 |
++-----+--------+-------------+-----------+------------+----------+-------+
+3 rows in set (0.00 sec)
+
